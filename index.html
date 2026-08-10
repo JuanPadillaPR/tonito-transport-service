@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toñito Transport Service Inc. | Transporte & Party Bus en Puerto Rico</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandYellow: '#FFC801',
+                        brandBlue: '#0052A5',
+                        brandDarkBlue: '#002B5B',
+                        brandRed: '#E63946',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0, 43, 91, 0.85) 0%, rgba(0, 82, 165, 0.75) 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-brandDarkBlue text-white text-xs md:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-3 md:space-x-4 flex-wrap">
+                <a href="tel:7873704157" class="hover:text-brandYellow transition flex items-center gap-1">
+                    <i class="fa-solid fa-phone text-brandYellow"></i> (787) 370-4157
+                </a>
+                <a href="tel:7878694999" class="hover:text-brandYellow transition hidden sm:inline-flex items-center gap-1">
+                    <i class="fa-solid fa-phone text-brandYellow"></i> (787) 869-4999
+                </a>
+                <a href="tel:7873984620" class="hover:text-brandYellow transition hidden lg:inline-flex items-center gap-1">
+                    <i class="fa-solid fa-phone text-brandYellow"></i> (787) 398-4620
+                </a>
+                <a href="mailto:Tonitotransportservice@gmail.com" class="hover:text-brandYellow transition hidden xl:inline-flex items-center gap-1">
+                    <i class="fa-solid fa-envelope text-brandYellow"></i> Tonitotransportservice@gmail.com
+                </a>
+            </div>
+            <div class="flex items-center space-x-3 text-xs">
+                <!-- Interactive Language Switcher Button -->
+                <button id="lang-btn" onclick="toggleLanguage()" class="bg-brandYellow text-brandDarkBlue hover:bg-yellow-400 font-bold px-3 py-1 rounded-full transition text-xs flex items-center gap-1.5 shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-globe"></i> <span id="lang-label">ES / EN (Español)</span>
+                </button>
+                <span class="text-slate-300 hidden sm:inline" data-es="🇵🇷 Servicio en todo Puerto Rico" data-en="🇵🇷 Service across Puerto Rico">🇵🇷 Servicio en todo Puerto Rico</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="bg-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center gap-3">
+                        <div class="bg-brandYellow text-brandDarkBlue p-2.5 rounded-xl font-extrabold text-xl shadow-inner border-2 border-brandBlue">
+                            TTS 🚍
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-extrabold text-lg md:text-xl text-brandDarkBlue tracking-tight leading-tight">TOÑITO TRANSPORT</span>
+                            <span class="text-xs font-semibold text-brandBlue tracking-widest uppercase">Service Inc.</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6 font-semibold text-slate-700">
+                    <a href="#nosotros" class="hover:text-brandBlue transition" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
+                    <a href="#flota" class="hover:text-brandBlue transition" data-es="Nuestra Flota" data-en="Our Fleet">Nuestra Flota</a>
+                    <a href="#servicios" class="hover:text-brandBlue transition" data-es="Servicios" data-en="Services">Servicios</a>
+                    <a href="#proceso" class="hover:text-brandBlue transition" data-es="¿Cómo Reservar?" data-en="How to Book?">¿Cómo Reservar?</a>
+                    <a href="#contacto" class="bg-brandYellow text-brandDarkBlue px-5 py-2.5 rounded-xl hover:bg-yellow-400 transition shadow-md font-bold" data-es="¡Reservar Ahora!" data-en="Book Now!">
+                        ¡Reservar Ahora!
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brandBlue focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-3">
+            <a href="#nosotros" class="block py-2 text-slate-700 font-medium" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
+            <a href="#flota" class="block py-2 text-slate-700 font-medium" data-es="Nuestra Flota" data-en="Our Fleet">Nuestra Flota</a>
+            <a href="#servicios" class="block py-2 text-slate-700 font-medium" data-es="Servicios" data-en="Services">Servicios</a>
+            <a href="#proceso" class="block py-2 text-slate-700 font-medium" data-es="¿Cómo Reservar?" data-en="How to Book?">¿Cómo Reservar?</a>
+            <a href="#contacto" class="block text-center bg-brandYellow text-brandDarkBlue py-3 rounded-xl font-bold shadow" data-es="¡Reservar Ahora!" data-en="Book Now!">
+                ¡Reservar Ahora!
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-slate-900 text-white min-h-[580px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <svg class="w-full h-full object-cover opacity-20 absolute" viewBox="0 0 800 600" preserveAspectRatio="none">
+                <rect width="800" height="600" fill="#002B5B"/>
+                <circle cx="400" cy="300" r="300" fill="#0052A5" opacity="0.3"/>
+            </svg>
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <!-- Tag superior -->
+                <div class="inline-flex items-center gap-2 bg-yellow-400/20 border border-brandYellow/40 text-brandYellow px-4 py-1.5 rounded-full text-sm font-semibold">
+                    <i class="fa-solid fa-star"></i> <span id="hero-tag" data-es="Tu transporte de confianza en Puerto Rico" data-en="Your trusted transportation in Puerto Rico">Tu transporte de confianza en Puerto Rico</span>
+                </div>
+
+                <!-- Título principal con soporte completo de traducción ES/EN -->
+                <h1 class="text-3xl sm:text-5xl font-black leading-tight tracking-tight" id="hero-title" 
+                    data-es="Tu viaje en Puerto Rico con la <span class='text-brandYellow underline decoration-brandYellow decoration-4'>seguridad y comodidad</span> que mereces" 
+                    data-en="Your trip in Puerto Rico with the <span class='text-brandYellow underline decoration-brandYellow decoration-4'>safety and comfort</span> you deserve">
+                    Tu viaje en Puerto Rico con la <span class="text-brandYellow underline decoration-brandYellow decoration-4">seguridad y comodidad</span> que mereces
+                </h1>
+
+                <!-- Parrafo principal traducible -->
+                <p class="text-slate-200 text-base sm:text-lg max-w-2xl" id="hero-desc"
+                   data-es="Desde traslados corporativos y viajes al aeropuerto hasta los mejores Chinchorreos y Party Bus en la isla. Unidades equipadas con A/C, música, luces y karaoke."
+                   data-en="From corporate transfers and airport trips to the best Chinchorreos and Party Bus on the island. Vehicles equipped with A/C, music, lights, and karaoke.">
+                    Desde traslados corporativos y viajes al aeropuerto hasta los mejores Chinchorreos y Party Bus en la isla. Unidades equipadas con A/C, música, luces y karaoke.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                    <a href="#contacto" class="bg-brandYellow text-brandDarkBlue hover:bg-yellow-400 font-extrabold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2 text-lg">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> <span id="hero-cta-btn" data-es="Cotiza HOY" data-en="Get a Quote TODAY">Cotiza HOY</span>
+                    </a>
+                    <a href="#flota" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-6 py-4 rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-bus"></i> <span data-es="Ver Guaguas" data-en="View Fleet">Ver Guaguas</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Featured Vehicle Card Preview -->
+            <div class="lg:col-span-5">
+                <div class="bg-white text-slate-800 rounded-3xl p-6 shadow-2xl border-4 border-brandYellow relative">
+                    <span class="absolute -top-3 -right-3 bg-brandRed text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow-md" data-es="¡Favorita de Grupos!" data-en="Group Favorite!">
+                        ¡Favorita de Grupos!
+                    </span>
+                    <h3 class="text-xl font-bold text-brandDarkBlue mb-1">MCI Motor Coach</h3>
+                    <p class="text-slate-500 text-sm mb-4" data-es="Capacidad para 54 pasajeros" data-en="Capacity for 54 passengers">Capacidad para 54 pasajeros</p>
+                    <div class="space-y-2 text-sm font-medium text-slate-700 mb-6">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-chair text-brandBlue"></i> <span data-es="Butacas Reclinables & Aire Acondicionado ❄️" data-en="Reclining Seats & Air Conditioning ❄️">Butacas Reclinables & Aire Acondicionado ❄️</span></div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-restroom text-brandBlue"></i> <span data-es="Baño Integrado 🚽" data-en="Onboard Restroom 🚽">Baño Integrado 🚽</span></div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-music text-brandBlue"></i> <span data-es="Música, Luces & Karaoke 🎤🪩" data-en="Music, Disco Lights & Karaoke 🎤🪩">Música, Luces & Karaoke 🎤🪩</span></div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-suitcase text-brandBlue"></i> <span data-es="Espacio para neveras o maletas 🧳" data-en="Space for coolers or luggage 🧳">Espacio para neveras o maletas 🧳</span></div>
+                    </div>
+                    <a href="https://wa.me/17873704157?text=Hola,%20me%20interesa%20separar%20el%20Motor%20Coach%20MCI%20para%20una%20fecha" target="_blank" class="block text-center w-full bg-brandBlue text-white font-bold py-3 rounded-xl hover:bg-brandDarkBlue transition shadow" data-es="Consultar Disponibilidad" data-en="Check Availability">
+                        Consultar Disponibilidad
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Sobre Nosotros (Misión y Visión) -->
+    <section id="nosotros" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-brandBlue font-bold text-sm tracking-widest uppercase" data-es="Nuestra Empresa" data-en="Our Company">Nuestra Empresa</h2>
+                <p class="text-3xl font-extrabold text-brandDarkBlue mt-1" data-es="Sobre Toñito Transport Service Inc." data-en="About Toñito Transport Service Inc.">Sobre Toñito Transport Service Inc.</p>
+                <p class="text-slate-600 mt-3" data-es="Somos una empresa puertorriqueña comprometida con la movilidad, la comodidad y el entretenimiento en toda la isla." data-en="We are a Puerto Rican company committed to mobility, comfort, and entertainment across the island.">
+                    Somos una empresa puertorriqueña comprometida con la movilidad, la comodidad y el entretenimiento en toda la isla.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                <!-- Misión Card -->
+                <div class="bg-slate-50 border-2 border-slate-100 rounded-3xl p-8 card-shadow flex flex-col justify-between hover:border-brandBlue/30 transition">
+                    <div>
+                        <div class="w-14 h-14 bg-brandBlue/10 text-brandBlue rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brandDarkBlue mb-4" data-es="Nuestra Misión" data-en="Our Mission">Nuestra Misión</h3>
+                        <p class="text-slate-600 leading-relaxed" data-es="Brindar servicios de transporte con los más altos estándares de seguridad, puntualidad y calidad. Nos comprometemos a ofrecer una experiencia de servicio confiable, cómoda y eficiente, respaldada por un equipo profesional que prioriza el bienestar, la satisfacción y la confianza de cada uno de nuestros clientes." data-en="To provide transportation services with the highest standards of safety, punctuality, and quality. We are committed to offering a reliable, comfortable, and efficient service experience, backed by a professional team that prioritizes the well-being, satisfaction, and trust of each of our clients.">
+                            Brindar servicios de transporte con los más altos estándares de seguridad, puntualidad y calidad. Nos comprometemos a ofrecer una experiencia de servicio confiable, cómoda y eficiente, respaldada por un equipo profesional que prioriza el bienestar, la satisfacción y la confianza de cada uno de nuestros clientes.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center gap-3 text-brandBlue font-semibold text-sm">
+                        <i class="fa-solid fa-shield-halved"></i> <span data-es="Compromiso con la seguridad en cada trayecto" data-en="Commitment to safety on every trip">Compromiso con la seguridad en cada trayecto</span>
+                    </div>
+                </div>
+
+                <!-- Visión Card -->
+                <div class="bg-slate-50 border-2 border-slate-100 rounded-3xl p-8 card-shadow flex flex-col justify-between hover:border-brandYellow/50 transition">
+                    <div>
+                        <div class="w-14 h-14 bg-brandYellow/20 text-brandDarkBlue rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brandDarkBlue mb-4" data-es="Nuestra Visión" data-en="Our Vision">Nuestra Visión</h3>
+                        <p class="text-slate-600 leading-relaxed" data-es="Ser la empresa de transporte líder y de mayor confianza en Puerto Rico. Reconocida por la excelencia en el servicio, la seguridad, la puntualidad e innovación. Asimismo, estableciendo relaciones duraderas con nuestros clientes y contribuyendo al desarrollo de una movilidad accesible, eficiente y de alta calidad para nuestra comunidad y visitantes." data-en="To be the leading and most trusted transportation company in Puerto Rico. Recognized for service excellence, safety, punctuality, and innovation. Establishing long-lasting relationships with our clients and contributing to the development of accessible, efficient, and high-quality mobility for our community and visitors.">
+                            Ser la empresa de transporte líder y de mayor confianza en Puerto Rico. Reconocida por la excelencia en el servicio, la seguridad, la puntualidad e innovación. Asimismo, estableciendo relaciones duraderas con nuestros clientes y contribuyendo al desarrollo de una movilidad accesible, eficiente y de alta calidad para nuestra comunidad y visitantes.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center gap-3 text-brandDarkBlue font-semibold text-sm">
+                        <i class="fa-solid fa-award"></i> <span data-es="Excelencia y confianza garantizada" data-en="Excellence and guaranteed trust">Excelencia y confianza garantizada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flota de Vehículos -->
+    <section id="flota" class="py-16 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-brandBlue font-bold text-sm tracking-widest uppercase" data-es="Variedad y Confort" data-en="Variety & Comfort">Variedad y Confort</h2>
+                <p class="text-3xl font-extrabold text-brandDarkBlue mt-1" data-es="Conoce Nuestra Flota de Guaguas" data-en="Meet Our Fleet of Buses">Conoce Nuestra Flota de Guaguas</p>
+                <p class="text-slate-600 mt-3" data-es="Contamos con la unidad perfecta para el tamaño de tu grupo y el tipo de evento que deseas realizar." data-en="We have the perfect vehicle for your group size and the type of event you want to organize.">
+                    Contamos con la unidad perfecta para el tamaño de tu grupo y el tipo de evento que deseas realizar.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Vehicle 1: MCI Motor Coach -->
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 bg-slate-200 relative overflow-hidden">
+                            <div class="w-full h-full bg-slate-800 flex items-center justify-center text-white relative">
+                                <div class="text-center p-4">
+                                    <i class="fa-solid fa-bus-simple text-6xl text-brandYellow mb-2"></i>
+                                    <p class="font-bold text-lg">MCI Motor Coach</p>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-brandBlue text-white text-xs font-bold px-3 py-1.5 rounded-full shadow" data-es="54 Pasajeros" data-en="54 Passengers">
+                                54 Pasajeros
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brandDarkBlue mb-2">Motor Coach (MCI)</h3>
+                            <p class="text-slate-500 text-xs mb-4" data-es="Ideal para viajes largos, grupos grandes e itinerarios corporativos." data-en="Ideal for long trips, large groups, and corporate itineraries.">Ideal para viajes largos, grupos grandes e itinerarios corporativos.</p>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Butacas Reclinables ultracómodas" data-en="Ultra-comfortable Reclining Seats">Butacas Reclinables ultracómodas</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Baño privado incorporado 🚽" data-en="Onboard Restroom 🚽">Baño privado incorporado 🚽</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Aire Acondicionado potente ❄️" data-en="Powerful Air Conditioning ❄️">Aire Acondicionado potente ❄️</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Sistema de Música, Luces & Karaoke 🎤🪩" data-en="Music System, Lights & Karaoke 🎤🪩">Sistema de Música, Luces & Karaoke 🎤🪩</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Espacio para neveras o maletas 🧳" data-en="Space for coolers or luggage 🧳">Espacio para neveras o maletas 🧳</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/17873704157?text=Cotizar%20MCI%2054%20pasajeros" target="_blank" class="block text-center w-full bg-slate-800 hover:bg-brandBlue text-white font-bold py-2.5 rounded-xl transition" data-es="Reservar Esta Unidad" data-en="Book This Unit">
+                            Reservar Esta Unidad
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vehicle 2: Krystal 36 -->
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 bg-slate-200 relative overflow-hidden">
+                            <div class="w-full h-full bg-slate-700 flex items-center justify-center text-white relative">
+                                <div class="text-center p-4">
+                                    <i class="fa-solid fa-van-shuttle text-6xl text-brandYellow mb-2"></i>
+                                    <p class="font-bold text-lg">Krystal Party Bus</p>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-brandBlue text-white text-xs font-bold px-3 py-1.5 rounded-full shadow" data-es="36 Pasajeros" data-en="36 Passengers">
+                                36 Pasajeros
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brandDarkBlue mb-2">Guagua Krystal (36 Cap)</h3>
+                            <p class="text-slate-500 text-xs mb-4" data-es="La favorita para bodas, despedidas de solter@s y party bus." data-en="The favorite for weddings, bachelor/bachelorette parties, and party bus.">La favorita para bodas, despedidas de solter@s y party bus.</p>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Butacas Reclinables" data-en="Reclining Seats">Butacas Reclinables</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Música 🎵, Luces 🪩 & Karaoke 🎤" data-en="Music 🎵, Disco Lights 🪩 & Karaoke 🎤">Música 🎵, Luces 🪩 & Karaoke 🎤</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Aire Acondicionado ❄️" data-en="Air Conditioning ❄️">Aire Acondicionado ❄️</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Espacio para neveras o maletas 🧳" data-en="Space for coolers or luggage 🧳">Espacio para neveras o maletas 🧳</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/17873704157?text=Cotizar%20Krystal%2036%20pasajeros" target="_blank" class="block text-center w-full bg-slate-800 hover:bg-brandBlue text-white font-bold py-2.5 rounded-xl transition" data-es="Reservar Esta Unidad" data-en="Book This Unit">
+                            Reservar Esta Unidad
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vehicle 3: Krystal 32 con Máquina de Humo -->
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 bg-slate-200 relative overflow-hidden">
+                            <div class="w-full h-full bg-slate-800 flex items-center justify-center text-white relative">
+                                <div class="text-center p-4">
+                                    <i class="fa-solid fa-bolt text-6xl text-brandYellow mb-2"></i>
+                                    <p class="font-bold text-lg">Krystal VIP Party</p>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-brandRed text-white text-xs font-bold px-3 py-1.5 rounded-full shadow" data-es="32 Pasajeros + Humo 💨" data-en="32 Passengers + Fog 💨">
+                                32 Pasajeros + Humo 💨
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brandDarkBlue mb-2">Krystal VIP (32 Cap)</h3>
+                            <p class="text-slate-500 text-xs mb-4" data-es="Experiencia de fiesta sobre ruedas nivel club." data-en="Club-level party on wheels experience.">Experiencia de fiesta sobre ruedas nivel club.</p>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Baño Integrado 🚽" data-en="Onboard Restroom 🚽">Baño Integrado 🚽</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <strong><span data-es="Máquina de humo incorporada 💨" data-en="Built-in Fog Machine 💨">Máquina de humo incorporada 💨</span></strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Sistema de Luces Disco & Karaoke" data-en="Disco Lights & Karaoke System">Sistema de Luces Disco & Karaoke</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="A/C ❄️ & Espacio Neveras/Maletas 🧳" data-en="A/C ❄️ & Cooler/Luggage Space 🧳">A/C ❄️ & Espacio Neveras/Maletas 🧳</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/17873704157?text=Cotizar%20Krystal%2032%20pasajeros" target="_blank" class="block text-center w-full bg-slate-800 hover:bg-brandBlue text-white font-bold py-2.5 rounded-xl transition" data-es="Reservar Esta Unidad" data-en="Book This Unit">
+                            Reservar Esta Unidad
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vehicle 4: Ford 26 Pasajeros -->
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 bg-slate-200 relative overflow-hidden">
+                            <div class="w-full h-full bg-slate-700 flex items-center justify-center text-white relative">
+                                <div class="text-center p-4">
+                                    <i class="fa-solid fa-bus text-5xl text-brandYellow mb-2"></i>
+                                    <p class="font-bold text-lg">Ford Vans & Guaguas</p>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-brandBlue text-white text-xs font-bold px-3 py-1.5 rounded-full shadow" data-es="26 Pasajeros" data-en="26 Passengers">
+                                26 Pasajeros
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brandDarkBlue mb-2">Guagua Ford</h3>
+                            <p class="text-slate-500 text-xs mb-4" data-es="Perfecta para grupos medianos, traslados privados y tours." data-en="Perfect for medium groups, private transfers, and tours.">Perfecta para grupos medianos, traslados privados y tours.</p>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Espacio cómodo e higiénico" data-en="Clean and comfortable interior">Espacio cómodo e higiénico</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Aire Acondicionado ❄️" data-en="Air Conditioning ❄️">Aire Acondicionado ❄️</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Espacio ideal para equipaje y neveras" data-en="Ideal space for luggage and coolers">Espacio ideal para equipaje y neveras</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/17873704157?text=Cotizar%20Ford%2026%20pasajeros" target="_blank" class="block text-center w-full bg-slate-800 hover:bg-brandBlue text-white font-bold py-2.5 rounded-xl transition" data-es="Reservar Esta Unidad" data-en="Book This Unit">
+                            Reservar Esta Unidad
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vehicle 5: Escolar de 36 a 44 Pasajeros -->
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 bg-slate-200 relative overflow-hidden">
+                            <div class="w-full h-full bg-amber-500 flex items-center justify-center text-slate-900 relative">
+                                <div class="text-center p-4">
+                                    <i class="fa-solid fa-school text-6xl text-slate-900 mb-2"></i>
+                                    <p class="font-bold text-lg">School Bus</p>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-brandDarkBlue text-white text-xs font-bold px-3 py-1.5 rounded-full shadow" data-es="36 - 44 Pasajeros" data-en="36 - 44 Passengers">
+                                36 - 44 Pasajeros
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brandDarkBlue mb-2" data-es="Guagua Escolar Tradicional" data-en="Traditional School Bus">Guagua Escolar Tradicional</h3>
+                            <p class="text-slate-500 text-xs mb-4" data-es="La opción económica y segura para excursiones y grupos amplios." data-en="The economic and safe option for field trips and large groups.">La opción económica y segura para excursiones y grupos amplios.</p>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Alta capacidad de asientos" data-en="High seating capacity">Alta capacidad de asientos</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Excelente costo por pasajero" data-en="Great cost efficiency per passenger">Excelente costo por pasajero</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Conducción profesional y segura" data-en="Safe and professional driving">Conducción profesional y segura</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/17873704157?text=Cotizar%20Guagua%20Escolar" target="_blank" class="block text-center w-full bg-slate-800 hover:bg-brandBlue text-white font-bold py-2.5 rounded-xl transition" data-es="Reservar Esta Unidad" data-en="Book This Unit">
+                            Reservar Esta Unidad
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vehicle 6: Camión Cisterna / Servicio Especial -->
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 bg-slate-200 relative overflow-hidden">
+                            <div class="w-full h-full bg-slate-600 flex items-center justify-center text-white relative">
+                                <div class="text-center p-4">
+                                    <i class="fa-solid fa-truck-droplet text-6xl text-cyan-300 mb-2"></i>
+                                    <p class="font-bold text-lg" data-es="Servicio de Agua Potable" data-en="Drinking Water Service">Servicio de Agua Potable</p>
+                                </div>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-cyan-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow">
+                                Camión Ford L8000
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brandDarkBlue mb-2" data-es="Suministro de Agua Potable" data-en="Potable Water Supply">Suministro de Agua Potable</h3>
+                            <p class="text-slate-500 text-xs mb-4" data-es="Servicio técnico y comercial para eventos o emergencias en la isla." data-en="Technical and commercial water delivery service for events or emergencies.">Servicio técnico y comercial para eventos o emergencias en la isla.</p>
+                            <ul class="space-y-2 text-sm text-slate-700">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Camión cisterna de gran volumen" data-en="High volume tanker truck">Camión cisterna de gran volumen</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Agua 100% limpia y potable" data-en="100% clean and potable water">Agua 100% limpia y potable</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> <span data-es="Atención a eventos y comunidades" data-en="Serving events and local communities">Atención a eventos y comunidades</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/17873704157?text=Cotizar%20Camion%20de%20Agua%20Potable" target="_blank" class="block text-center w-full bg-slate-800 hover:bg-brandBlue text-white font-bold py-2.5 rounded-xl transition" data-es="Consultar Servicio" data-en="Inquire Service">
+                            Consultar Servicio
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Disponibles & Horarios -->
+    <section id="servicios" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-brandBlue font-bold text-sm tracking-widest uppercase" data-es="Nuestros Servicios" data-en="Our Services">Nuestros Servicios</h2>
+                <p class="text-3xl font-extrabold text-brandDarkBlue mt-1" data-es="¿Qué viaje vas a organizar hoy?" data-en="What trip are you planning today?">¿Qué viaje vas a organizar hoy?</p>
+                <p class="text-slate-600 mt-3" data-es="Trabajamos todo tipo de traslados con flexibilidad de fechas y horarios las 24 horas." data-en="We provide all types of transportation with flexible dates and 24/7 schedules.">Trabajamos todo tipo de traslados con flexibilidad de fechas y horarios las 24 horas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Servicio 1: Chinchorreo -->
+                <div class="bg-amber-50 border border-amber-200 rounded-3xl p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="text-4xl mb-3">🍻</div>
+                        <h3 class="text-xl font-bold text-brandDarkBlue mb-2">Chinchorreo</h3>
+                        <p class="text-slate-600 text-sm mb-4" data-es="Recorre la isla disfrutando con tus amigos sin preocuparte por manejar ni estacionar." data-en="Tour the island enjoying with friends without worrying about driving or parking.">
+                            Recorre la isla disfrutando con tus amigos sin preocuparte por manejar ni estacionar.
+                        </p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-amber-200 text-xs font-semibold text-amber-900" data-es="<i class='fa-regular fa-clock text-amber-600'></i> Salidas desde las <strong>9:30 AM</strong> en adelante todos los días." data-en="<i class='fa-regular fa-clock text-amber-600'></i> Departures from <strong>9:30 AM</strong> onwards every day.">
+                        <i class="fa-regular fa-clock text-amber-600"></i> Salidas desde las <strong>9:30 AM</strong> en adelante todos los días.
+                    </div>
+                </div>
+
+                <!-- Servicio 2: Party Bus -->
+                <div class="bg-purple-50 border border-purple-200 rounded-3xl p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="text-4xl mb-3">🎉</div>
+                        <h3 class="text-xl font-bold text-brandDarkBlue mb-2">Party Bus</h3>
+                        <p class="text-slate-600 text-sm mb-4" data-es="La verdadera fiesta sobre ruedas con luces de neón, karaoke, música a todo volumen y máquina de humo." data-en="The ultimate party on wheels with disco lights, karaoke, loud music, and fog machine.">
+                            La verdadera fiesta sobre ruedas con luces de neón, karaoke, música a todo volumen y máquina de humo.
+                        </p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-purple-200 text-xs font-semibold text-purple-900" data-es="<i class='fa-regular fa-clock text-purple-600'></i> Disponible <strong>todos los días</strong> a partir de las <strong>2:00 PM</strong> en adelante." data-en="<i class='fa-regular fa-clock text-purple-600'></i> Available <strong>every day</strong> starting at <strong>2:00 PM</strong> onwards.">
+                        <i class="fa-regular fa-clock text-purple-600"></i> Disponible <strong>todos los días</strong> a partir de las <strong>2:00 PM</strong> en adelante.
+                    </div>
+                </div>
+
+                <!-- Servicio 3: Eventos Sociales -->
+                <div class="bg-blue-50 border border-blue-200 rounded-3xl p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="text-4xl mb-3">🥳</div>
+                        <h3 class="text-xl font-bold text-brandDarkBlue mb-2" data-es="Cumpleaños & Solterí@s" data-en="Birthdays & Parties">Cumpleaños & Solterí@s</h3>
+                        <p class="text-slate-600 text-sm mb-4" data-es="Despedidas de soltero/a, quinceañeros, graduaciones y fiestas privadas a tu medida." data-en="Bachelor/bachelorette parties, sweet sixteens, graduations, and custom private events.">
+                            Despedidas de soltero/a, quinceañeros, graduaciones y fiestas privadas a tu medida.
+                        </p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-blue-200 text-xs font-semibold text-blue-900" data-es="<i class='fa-solid fa-calendar-check text-blue-600'></i> Escoges fecha, unidad y hora de salida personalizada." data-en="<i class='fa-solid fa-calendar-check text-blue-600'></i> Choose your date, vehicle, and custom departure time.">
+                        <i class="fa-solid fa-calendar-check text-blue-600"></i> Escoges fecha, unidad y hora de salida personalizada.
+                    </div>
+                </div>
+
+                <!-- Servicio 4: Corporativo & Aeropuerto -->
+                <div class="bg-slate-100 border border-slate-200 rounded-3xl p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="text-4xl mb-3">✈️</div>
+                        <h3 class="text-xl font-bold text-brandDarkBlue mb-2" data-es="Traslados & Empresa" data-en="Corporate & Airport">Traslados & Empresa</h3>
+                        <p class="text-slate-600 text-sm mb-4" data-es="Viajes corporativos, traslados al Aeropuerto LMM, convenciones y excursiones turísticas." data-en="Corporate trips, San Juan LMM Airport transfers, conventions, and sightseeing tours.">
+                            Viajes corporativos, traslados al Aeropuerto LMM, convenciones y excursiones turísticas.
+                        </p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-slate-200 text-xs font-semibold text-slate-800" data-es="<i class='fa-solid fa-clock text-slate-600'></i> Horarios flexibles todas las horas bajo reserva previa." data-en="<i class='fa-solid fa-clock text-slate-600'></i> Flexible 24/7 schedule upon prior reservation.">
+                        <i class="fa-solid fa-clock text-slate-600"></i> Horarios flexibles todas las horas bajo reserva previa.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso de Contratación (Paso a Paso) -->
+    <section id="proceso" class="py-16 bg-brandDarkBlue text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-brandYellow font-bold text-sm tracking-widest uppercase" data-es="Paso a Paso" data-en="Step by Step">Paso a Paso</h2>
+                <p class="text-3xl font-extrabold mt-1" data-es="Pasos sencillos para contratar tu servicio" data-en="Simple steps to book your service">Pasos sencillos para contratar tu servicio</p>
+                <p class="text-slate-300 mt-2" data-es="Separa tu unidad de forma rápida y transparente con nosotros." data-en="Reserve your vehicle quickly and transparently with us.">Separa tu unidad de forma rápida y transparente con nosotros.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <!-- Paso 1 -->
+                <div class="bg-white/10 backdrop-blur border border-white/20 rounded-3xl p-8 text-center relative flex flex-col items-center">
+                    <div class="w-16 h-16 bg-brandYellow text-brandDarkBlue font-black text-2xl rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-es="Separación de Fecha" data-en="Date Reservation">Separación de Fecha</h3>
+                    <p class="text-slate-200 text-sm" data-es="Se separa la fecha deseada realizando un depósito inicial de solo <strong>$150.00</strong>." data-en="Reserve your requested date with an initial deposit of only <strong>$150.00</strong>.">
+                        Se separa la fecha deseada realizando un depósito inicial de solo <strong>$150.00</strong>.
+                    </p>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="bg-white/10 backdrop-blur border border-white/20 rounded-3xl p-8 text-center relative flex flex-col items-center">
+                    <div class="w-16 h-16 bg-brandYellow text-brandDarkBlue font-black text-2xl rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-es="Formalización de Contrato" data-en="Contract Confirmation">Formalización de Contrato</h3>
+                    <p class="text-slate-200 text-sm" data-es="Luego de recibir el depósito y los datos del cliente (Nombre, Celular, Hora y Unidad), se realiza el contrato oficial." data-en="After receiving the deposit and client details (Name, Cellphone, Time & Vehicle), the official contract is issued.">
+                        Luego de recibir el depósito y los datos del cliente (Nombre, Celular, Hora y Unidad), se realiza el contrato oficial.
+                    </p>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="bg-brandYellow text-brandDarkBlue rounded-3xl p-8 text-center relative flex flex-col items-center shadow-xl">
+                    <div class="w-16 h-16 bg-brandDarkBlue text-white font-black text-2xl rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        3
+                    </div>
+                    <h3 class="text-2xl font-black mb-3" data-es="¡Regla #3!" data-en="Rule #3!">¡Regla #3!</h3>
+                    <p class="font-extrabold text-lg uppercase tracking-wide" data-es="¡NOS VAMOS DE CHINCHORREO Y A DISFRUTAR! 🥳🎉" data-en="TIME TO PARTY & ENJOY PUERTO RICO! 🥳🎉">
+                        ¡NOS VAMOS DE CHINCHORREO Y A DISFRUTAR! 🥳🎉
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto & Teléfonos -->
+    <section id="contacto" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200 grid grid-cols-1 lg:grid-cols-12">
+                
+                <!-- Direct Info Panel -->
+                <div class="lg:col-span-5 bg-brandBlue text-white p-8 lg:p-12 flex flex-col justify-between">
+                    <div>
+                        <span class="text-brandYellow font-bold text-xs uppercase tracking-widest" data-es="Contacto Directo" data-en="Direct Contact">Contacto Directo</span>
+                        <h3 class="text-3xl font-extrabold mt-2 mb-6" data-es="Contáctanos Hoy" data-en="Contact Us Today">Contáctanos Hoy</h3>
+                        <p class="text-slate-100 text-sm mb-8 leading-relaxed" data-es="Estamos listos para responder tus preguntas y cotizar la mejor unidad para tu evento o viaje." data-en="We are ready to answer your questions and quote the best vehicle for your event or trip.">
+                            Estamos listos para responder tus preguntas y cotizar la mejor unidad para tu evento o viaje.
+                        </p>
+
+                        <div class="space-y-6 text-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-phone text-brandYellow text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-200" data-es="Teléfonos Principales" data-en="Main Phone Numbers">Teléfonos Principales</p>
+                                    <p class="font-bold text-base"><a href="tel:7873704157">(787) 370-4157</a></p>
+                                    <p class="font-bold text-base"><a href="tel:7878694999">(787) 869-4999</a> / <a href="tel:7873984620">(787) 398-4620</a></p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-envelope text-brandYellow text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-200" data-es="Correos Electrónicos" data-en="Email Addresses">Correos Electrónicos</p>
+                                    <p class="font-semibold text-sm">Tonitotransportservice@gmail.com</p>
+                                    <p class="font-semibold text-sm">Juandariel4157@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-language text-brandYellow text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-200" data-es="Atención Personalizada" data-en="Customer Support">Atención Personalizada</p>
+                                    <p class="font-semibold text-sm">Español & English</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/20">
+                        <a href="https://wa.me/17873704157?text=Hola!%20Deseo%20cotizar%20un%20servicio%20de%20transporte." target="_blank" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i> <span data-es="Enviar Mensaje por WhatsApp" data-en="Send Message via WhatsApp">Enviar Mensaje por WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form Panel -->
+                <div class="lg:col-span-7 p-8 lg:p-12">
+                    <h3 class="text-2xl font-bold text-brandDarkBlue mb-2" data-es="Solicita una Cotización" data-en="Request a Quote">Solicita una Cotización</h3>
+                    <p class="text-slate-500 text-sm mb-6" data-es="Completa el formulario y te responderemos a la brevedad posible." data-en="Fill out the form and we will respond as soon as possible.">Completa el formulario y te responderemos a la brevedad posible.</p>
+
+                    <form id="booking-form" class="space-y-4" onsubmit="event.preventDefault(); sendToWhatsApp();">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-es="Nombre Completo" data-en="Full Name">Nombre Completo</label>
+                                <input type="text" id="nombre" required placeholder="Tu nombre" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-es="Número Celular" data-en="Phone Number">Número Celular</label>
+                                <input type="tel" id="telefono" required placeholder="(787) 000-0000" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-es="Tipo de Servicio" data-en="Service Type">Tipo de Servicio</label>
+                                <select id="servicio" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue">
+                                    <option value="Chinchorreo">Chinchorreo</option>
+                                    <option value="Party Bus">Party Bus</option>
+                                    <option value="Traslado Aeropuerto">Traslado Aeropuerto</option>
+                                    <option value="Viaje Corporativo">Viaje Corporativo</option>
+                                    <option value="Despedida de Soltero/a">Despedida de Soltero/a</option>
+                                    <option value="Cumpleaños o Quinceañero">Cumpleaños o Quinceañero</option>
+                                    <option value="Servicio de Agua Potable">Servicio de Agua Potable</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-es="Unidad Preferida" data-en="Preferred Bus">Unidad Preferida</label>
+                                <select id="unidad" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue">
+                                    <option value="Motor Coach MCI (54 cap)">Motor Coach MCI (54 cap)</option>
+                                    <option value="Krystal (36 cap)">Krystal (36 cap)</option>
+                                    <option value="Krystal VIP + Humo (32 cap)">Krystal VIP + Humo (32 cap)</option>
+                                    <option value="Ford (26 cap)">Ford (26 cap)</option>
+                                    <option value="Escolar (36-44 cap)">Escolar (36-44 cap)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-es="Fecha Deseada" data-en="Requested Date">Fecha Deseada</label>
+                                <input type="date" id="fecha" required class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-es="Hora de Salida" data-en="Departure Time">Hora de Salida</label>
+                                <input type="time" id="hora" required class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-es="Detalles o Comentarios Adicionales" data-en="Additional Details">Detalles o Comentarios Adicionales</label>
+                            <textarea id="mensaje" rows="3" placeholder="Lugar de recogida, destino o cantidad aproximada de pasajeros..." class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brandYellow hover:bg-yellow-400 text-brandDarkBlue font-extrabold py-3.5 rounded-xl shadow-lg transition text-base" data-es="Enviar Solicitud de Cotización" data-en="Submit Quote Request">
+                            Enviar Solicitud de Cotización
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brandDarkBlue text-white py-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="font-bold text-lg">Toñito Transport Service Inc.</p>
+                <p class="text-slate-400 text-xs mt-1" data-es="Servicio de transporte y Party Bus en todo Puerto Rico 🇵🇷" data-en="Transportation & Party Bus service across Puerto Rico 🇵🇷">Servicio de transporte y Party Bus en todo Puerto Rico 🇵🇷</p>
+            </div>
+            <div class="text-xs text-slate-400">
+                &copy; <span id="year"></span> Toñito Transport Service Inc. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for Dynamic Interactions & Language Toggle -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Language Switcher Logic
+        let currentLang = 'es';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            
+            // Update button label
+            const langLabel = document.getElementById('lang-label');
+            if (currentLang === 'es') {
+                langLabel.textContent = 'ES / EN (Español)';
+            } else {
+                langLabel.textContent = 'EN / ES (English)';
+            }
+
+            // Update all elements with data attributes (using innerHTML to preserve styles like span)
+            const elements = document.querySelectorAll('[data-es][data-en]');
+            elements.forEach(el => {
+                const translation = el.getAttribute(`data-${currentLang}`);
+                if (translation) {
+                    el.innerHTML = translation;
+                }
+            });
+        }
+
+        // Redirect Form Submission to WhatsApp for instant responses
+        function sendToWhatsApp() {
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const servicio = document.getElementById('servicio').value;
+            const unidad = document.getElementById('unidad').value;
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            const text = `Hola, mi nombre es ${nombre}. Deseo cotizar el siguiente viaje:\n` +
+                         `- Servicio: ${servicio}\n` +
+                         `- Unidad: ${unidad}\n` +
+                         `- Fecha: ${fecha}\n` +
+                         `- Hora de Salida: ${hora}\n` +
+                         `- Teléfono: ${telefono}\n` +
+                         `- Detalles: ${mensaje}`;
+
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/17873704157?text=${encodedText}`, '_blank');
+        }
+    </script>
+</body>
+</html>
